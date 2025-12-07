@@ -2,7 +2,7 @@
 import React, { useEffect, useRef, useState } from "react";
 import API from "../api";
 import ReactionPopup from "./ReactionPopup";
-import CallButton from "./CallButton";   // ⭐ ADD THIS
+import CallButton from "./CallButton"; // ⭐ ADD THIS
 import VideoCallModal from "./VideoCallModal"; // ⭐ ADD THIS
 import { socket } from "../socket";
 
@@ -20,10 +20,10 @@ export default function ChatWindow({
   const [seenMap, setSeenMap] = useState({});
   const [showReactorFor, setShowReactorFor] = useState(null);
 
-  const [callModalOpen, setCallModalOpen] = useState(false);      // ⭐ NEW
-  const [isIncomingCall, setIsIncomingCall] = useState(false);    // ⭐ NEW
-  const [incomingFrom, setIncomingFrom] = useState(null);         // ⭐ NEW
-  const [callType, setCallType] = useState("video");              // ⭐ NEW
+  const [callModalOpen, setCallModalOpen] = useState(false); // ⭐ NEW
+  const [isIncomingCall, setIsIncomingCall] = useState(false); // ⭐ NEW
+  const [incomingFrom, setIncomingFrom] = useState(null); // ⭐ NEW
+  const [callType, setCallType] = useState("video"); // ⭐ NEW
 
   const bottomRef = useRef();
 
@@ -241,10 +241,8 @@ export default function ChatWindow({
 
   return (
     <div className="bg-white shadow rounded h-[80vh] flex flex-col">
-
       {/* HEADER */}
       <div className="p-4 border-b flex justify-between items-center sticky top-0 bg-white z-10">
-
         {/* LEFT: AVATAR + NAME */}
         <div className="flex items-center gap-3">
           <img
@@ -263,12 +261,35 @@ export default function ChatWindow({
               <div className="text-sm text-green-500">Active now</div>
             ) : (
               <div className="text-sm text-gray-400">
-                {friend.lastSeen
-                  ? `Last seen: ${new Date(friend.lastSeen).toLocaleTimeString(
-                      [],
-                      { hour: "2-digit", minute: "2-digit" }
-                    )}`
-                  : "Offline"}
+                {(() => {
+                  if (!friend.lastSeen) return "Offline";
+
+                  const last = new Date(friend.lastSeen);
+                  const now = new Date();
+
+                  const isToday =
+                    last.getDate() === now.getDate() &&
+                    last.getMonth() === now.getMonth() &&
+                    last.getFullYear() === now.getFullYear();
+
+                  const yesterday = new Date();
+                  yesterday.setDate(now.getDate() - 1);
+
+                  const isYesterday =
+                    last.getDate() === yesterday.getDate() &&
+                    last.getMonth() === yesterday.getMonth() &&
+                    last.getFullYear() === yesterday.getFullYear();
+
+                  const time = last.toLocaleTimeString([], {
+                    hour: "2-digit",
+                    minute: "2-digit",
+                  });
+
+                  if (isToday) return `Last seen today at ${time}`;
+                  if (isYesterday) return `Last seen yesterday at ${time}`;
+
+                  return `Last seen on ${last.toLocaleDateString()} at ${time}`;
+                })()}
               </div>
             )}
           </div>
