@@ -7,7 +7,7 @@ export function initSocket(server) {
   const io = new Server(server, {
     cors: {
       origin: [
-        "https://blog-application-eta-roan.vercel.app",
+        "https://blog-application-lovat.vercel.app/",
         "http://localhost:5173"
       ],
       methods: ["GET", "POST"]
