@@ -6,7 +6,10 @@ let onlineUsers = new Map();
 export function initSocket(server) {
   const io = new Server(server, {
     cors: {
-      origin: "*",
+      origin: [
+        "https://blog-application-eta-roan.vercel.app",
+        "http://localhost:5173"
+      ],
       methods: ["GET", "POST"]
     }
   });
