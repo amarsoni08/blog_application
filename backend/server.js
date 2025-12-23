@@ -20,7 +20,8 @@ app.use(
     origin: [
       "https://blog-application-lovat.vercel.app", // prod frontend
       "http://localhost:5173",                     // local dev
-      "http://13.205.46.61"                         // EC2 backend origin (IMPORTANT)
+      "http://13.205.46.61",                        // EC2 backend origin (IMPORTANT)
+      "http://myfrontendd.s3-website.ap-south-1.amazonaws.com"
     ],
     methods: ["GET", "POST", "PUT", "DELETE", "OPTIONS"],
     allowedHeaders: ["Content-Type", "Authorization"],
