@@ -18,7 +18,8 @@ connectDB();
 app.use(
   cors({
     origin: [
-      "https://blog-application-lovat.vercel.app"
+      "https://blog-application-lovat.vercel.app",
+      "http://localhost:5173"
     ],
     credentials: true,
   })
