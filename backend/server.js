@@ -18,12 +18,19 @@ connectDB();
 app.use(
   cors({
     origin: [
-      "https://blog-application-lovat.vercel.app",
-      "http://localhost:5173"
+      "https://blog-application-lovat.vercel.app", // prod frontend
+      "http://localhost:5173",                     // local dev
+      "http://13.205.46.61"                         // EC2 backend origin (IMPORTANT)
     ],
+    methods: ["GET", "POST", "PUT", "DELETE", "OPTIONS"],
+    allowedHeaders: ["Content-Type", "Authorization"],
     credentials: true,
   })
 );
+
+// preflight support
+app.options("*", cors());
+
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(morgan('dev')); 
