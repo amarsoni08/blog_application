@@ -11,7 +11,8 @@ import friendRouter from './src/routes/friendRoute.js';
 import messageRouter from './src/routes/messageRoute.js';
 import morgan from 'morgan';
 import http from 'http';
-
+import {initLogger} from './src/utils/logger.js';
+initLogger();
 const app = express();
 connectDB();
 
