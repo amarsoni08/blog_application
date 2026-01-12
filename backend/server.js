@@ -21,6 +21,7 @@ app.use(
     origin: [
       "https://blog-application-lovat.vercel.app", // prod frontend
       "http://localhost:5173",                     // local dev
+      "http://localhost:8080",
       "http://13.232.200.157",                        // EC2 backend origin (IMPORTANT)
       "http://myfrontendd.s3-website.ap-south-1.amazonaws.com"
     ],
