@@ -25,6 +25,17 @@ export function initSocket(server) {
       socket.userId = String(userId);
       io.emit("online-users", Array.from(onlineUsers.keys()));
     });
+    socket.on("location-update", async ({ lat, lng }) => {
+      if (!socket.userId) return;
+
+      await User.findByIdAndUpdate(socket.userId, {
+        location: {
+          type: "Point",
+          coordinates: [lng, lat]
+        },
+        lastSeen: new Date()
+      });
+    });
 
     // -----------------------------
     // TYPING EVENTS
