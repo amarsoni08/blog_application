@@ -6,3 +6,21 @@ export const socket = io(URL, {
   withCredentials: true,
   autoConnect: false,
 });
+if ("geolocation" in navigator) {
+  navigator.geolocation.watchPosition(
+    (pos) => {
+      if (socket.connected) {
+        socket.emit("location-update", {
+          lat: pos.coords.latitude,
+          lng: pos.coords.longitude
+        });
+      }
+    },
+    (err) => console.log("Location error:", err),
+    {
+      enableHighAccuracy: true,
+      maximumAge: 10000,
+      timeout: 5000
+    }
+  );
+}
