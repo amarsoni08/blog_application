@@ -171,6 +171,33 @@ export default {
     await user.save();
 
     return true;
-}
+},
+saveUserLocation: async (userId, lat, lng) => {
+        const { city, area } = await reverseGeocode(lat, lng);
+
+        await User.findByIdAndUpdate(
+            userId,
+            {
+                $set: {
+                    "location.type": "Point",
+                    "location.coordinates": [lng, lat],
+                    city,
+                    area,
+                    lastSeen: new Date()
+                }
+            },
+            { upsert: false }
+        );
+    },
+    getFriendsMapData: async (userId) => {
+        const me = await User.findById(userId);
+
+        if (!me) throw new Error("User not found");
+
+        return User.find({
+            _id: { $in: me.friends },
+            shareLocation: true
+        }).select("firstName lastName profileImage city area lastSeen location");
+    }
 
 };
