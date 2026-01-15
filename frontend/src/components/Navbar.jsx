@@ -3,7 +3,7 @@ import { Link, useNavigate } from "react-router-dom";
 import { FaUserFriends, FaEnvelope } from "react-icons/fa";
 import API from "../api";
 import { socket } from "../socket";
-
+import { FaMapMarkedAlt } from "react-icons/fa";
 export default function Navbar() {
   const navigate = useNavigate();
   const [unreadTotal, setUnreadTotal] = useState(0);
@@ -141,6 +141,10 @@ export default function Navbar() {
                 )}
               </Link>
 
+              <Link to="/map">
+                <FaMapMarkedAlt className="text-2xl text-gray-700 hover:text-black" />
+              </Link>
+              
               {/* PROFILE */}
               <Link to="/profile">
                 <img
@@ -149,7 +153,7 @@ export default function Navbar() {
                   alt="profile"
                 />
               </Link>
-
+              
               {/* LOGOUT */}
               <button onClick={logout} className="text-red-500 font-medium hover:text-red-700">
                 Logout
