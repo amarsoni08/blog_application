@@ -6,3 +6,45 @@
 body {
   @apply bg-gray-100;
 }
+
+.map-pin {
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  border: 3px solid white;
+  overflow: hidden;
+  box-shadow: 0 0 10px rgba(0,0,0,0.5);
+}
+
+.map-pin img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.map-pin.live {
+  box-shadow: 0 0 15px 4px #00ff6a;
+}
+
+.snap-cluster {
+  width: 50px;
+  height: 50px;
+  background: linear-gradient(135deg, #ffcc00, #ff9500);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 3px solid white;
+  box-shadow: 0 0 15px rgba(255,165,0,0.7);
+}
+
+.snap-cluster-count {
+  font-size: 18px;
+  font-weight: bold;
+  color: black;
+}
+
+.live-text {
+  color: #00ff6a;
+  font-weight: bold;
+}
