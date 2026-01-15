@@ -78,10 +78,10 @@ export default function Navbar() {
     socket.on("message-seen", () => loadUnread());
 
     // // Optional: whenever socket connects, reload unread
-    // socket.on("connect", loadUnread);
+    socket.on("connect", loadUnread);
 
     // // Poll every 5 sec as backup
-    // const interval = setInterval(loadUnread, 5000);
+    const interval = setInterval(loadUnread, 5000);
 
     return () => {
       clearInterval(interval);
