@@ -74,6 +74,33 @@ const userSchema = new mongoose.Schema(
   type: Date,
   default: null
 },
+    location: {
+      type: {
+        type: String,
+        enum: ["Point"],
+        default: "Point"
+      },
+      coordinates: {
+        type: [Number], // [lng, lat]
+        default: [0, 0]
+      }
+    },
+
+    city: {
+      type: String,
+      default: ""
+    },
+
+    area: {
+      type: String,
+      default: ""
+    },
+
+    // Privacy control
+    shareLocation: {
+      type: Boolean,
+      default: true
+    }
   },
   { timestamps: true }
 );
