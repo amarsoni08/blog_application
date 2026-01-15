@@ -17,5 +17,7 @@ userRouter.patch(
   userController.removeProfileImage
 );
 userRouter.get("/me", userauthenticateJWT,userController.logininfo);
-userRouter.post("/last-seen",userauthenticateJWT,userController.setLastSeen)
+userRouter.post("/last-seen",userauthenticateJWT,userController.setLastSeen);
+userRouter.post("/location",userauthenticateJWT,userController.updateLocation);
+userRouter.get("/friends/map",userauthenticateJWT,userController.getFriendsForMap);
 export default userRouter;                  
