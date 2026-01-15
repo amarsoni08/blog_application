@@ -15,7 +15,7 @@ import Profile from "./pages/Profile";
 import LogoutPage from "./pages/LogoutPage";
 import FriendsPage from "./pages/FriendsPage";
 import Messages from "./pages/Messages";
-
+import SnapMap from "./pages/SnapMap";
 import VideoCallModal from "./components/VideoCallModal";
 
 function PrivateRoute({ children }) {
@@ -82,7 +82,7 @@ export default function App() {
           <Route path="/forgot" element={<ForgotPassword />} />
           <Route path="/profile" element={<Profile />} />
           <Route path="/posts/:id" element={<PostDetail />} />
-
+          <Route path="/map" element={<SnapMap />} />
           <Route
             path="/messages"
             element={
