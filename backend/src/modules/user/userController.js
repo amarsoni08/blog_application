@@ -153,5 +153,23 @@ export default {
   } catch (err) {
     next(err);
   }
-}
+},
+    updateLocation: async (req, res, next) => {
+        try {
+            const { lat, lng } = req.body;
+            await userService.saveUserLocation(req.user.id, lat, lng);
+            res.json({ success: true });
+        } catch (err) {
+            next(err);
+        }
+    },
+
+    getFriendsForMap: async (req, res, next) => {
+        try {
+            const friends = await userService.getFriendsMapData(req.user.id);
+            return res.json(friends);
+        } catch (err) {
+            next(err);
+        }
+    },
 };
