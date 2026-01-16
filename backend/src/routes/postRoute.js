@@ -12,5 +12,5 @@ postRouter.patch("/:id",userauthenticateJWT,upload.array("images", 10),postContr
 postRouter.delete("/:id",userauthenticateJWT,postController.deletePost);
 postRouter.post("/:id/like", userauthenticateJWT, postController.toggleLike);
 postRouter.get("/:id/likes", userauthenticateJWT, postController.getPostLikes);
-postRouter.get("/user/:userId", userauthenticateJWT, postController.getPostsByUser);
+postRouter.get("/user/:id", userauthenticateJWT, postController.getPostsByUser);
 export default postRouter;
