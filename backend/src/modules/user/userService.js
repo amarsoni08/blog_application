@@ -1,4 +1,5 @@
 import User from "../../models/userModel.js";
+import Post from "../../models/postModel.js";
 import jwt from "jsonwebtoken";
 import bcrypt from "bcryptjs";
 import {sendEmail} from "../../utils/sendEmail.js";
@@ -79,7 +80,7 @@ export default {
     getUserProfileService: async (userId) => {
         const user = await User.findById(userId).select("-password");
         if (!user) throw { statusCode: 404, message: "User not found" };
-
+        const postsCount = await Post.countDocuments({ author: userId });
         return {
             id: user._id,
             firstName: user.firstName,
@@ -88,7 +89,9 @@ export default {
             mobile: user.mobile,
             bio: user.bio || "",
             profileImage: user.profileImage || null,
-            createdAt: user.createdAt
+            receivedRequestsCount: user.receivedRequests.length,
+            friendsCount: user.friends.length,
+            postsCount
         };
     },
     sendOtpService: async (email) => {
