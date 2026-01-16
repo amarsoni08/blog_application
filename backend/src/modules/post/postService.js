@@ -70,5 +70,11 @@ export default {
 
     await Post.findByIdAndDelete(postId);
     return true;
+  },
+
+    getPostsByUserService: async (userId) => {
+    return Post.find({ author: userId })
+      .populate("author", "firstName lastName profileImage")
+      .sort({ createdAt: -1 });
   }
 }
