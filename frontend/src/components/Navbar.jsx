@@ -77,10 +77,10 @@ export default function Navbar() {
     // If messages are seen in chat window
     socket.on("message-seen", () => loadUnread());
 
-    // // Optional: whenever socket connects, reload unread
+    // Optional: whenever socket connects, reload unread
     socket.on("connect", loadUnread);
 
-    // // Poll every 5 sec as backup
+    // Poll every 5 sec as backup
     const interval = setInterval(loadUnread, 5000);
 
     return () => {
