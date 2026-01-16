@@ -113,6 +113,22 @@ export default {
     } catch (err) {
       next(err);
     }
+  },
+  getPostsByUser: async (req, res, next) => {
+    try {
+      const { userId } = req.params;
+
+      const posts = await postService.getPostsByUserService(userId);
+
+      return successResponse(
+        res,
+        200,
+        "User posts fetched successfully",
+        posts
+      );
+    } catch (err) {
+      next(err);
+    }
   }
 
 
