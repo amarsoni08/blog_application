@@ -73,10 +73,8 @@ export default {
   },
 
     getPostsByUserService: async (userId) => {
-    const postbyuser = await Post.find({ author: userId })
+    return Post.find({ author: userId })
       .populate("author", "firstName lastName profileImage")
       .sort({ createdAt: -1 });
-
-    return postbyuser;
   }
 }
