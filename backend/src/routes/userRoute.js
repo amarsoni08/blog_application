@@ -8,7 +8,7 @@ userRouter.post("/register", upload.single("profileImage"), userController.regis
 userRouter.post("/login",formParser, userController.loginUser);
 userRouter.patch('/update/profile', userauthenticateJWT,upload.single("profileImage"), userController.editProfile);
 userRouter.get('/userprofile', userauthenticateJWT, userController.getProfile);
-userRouter.post('/resert-password', userauthenticateJWT, userController.resetPassword);
+userRouter.post('/reset-password', userauthenticateJWT, userController.resetPassword);
 userRouter.post('/forgot-password/send-otp', userController.sendOtp);
 userRouter.post('/forgot-password/verify-otp', userController.verifyOtpAndReset);
 userRouter.patch(
