@@ -138,7 +138,7 @@ export default {
  logininfo:async(req,res,next)=>{
   try {
         const user = await User.findById(req.user.id)
-            .select("firstName lastName profileImage receivedRequestsCount");
+            .select("firstName lastName profileImage email receivedRequestsCount");
 
         res.json({ success: true, ...user.toObject() });
     } catch (err) {
