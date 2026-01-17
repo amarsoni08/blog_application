@@ -116,9 +116,9 @@ export default {
   },
   getPostsByUser: async (req, res, next) => {
     try {
-      const { userId } = req.params;
+      const { id } = req.params;
 
-      const posts = await postService.getPostsByUserService(userId);
+      const posts = await postService.getPostsByUserService(id);
 
       return successResponse(
         res,
