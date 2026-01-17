@@ -23,7 +23,8 @@ app.use(
       "http://localhost:5173",                     // local dev
       "http://localhost:8080",
       "http://13.232.200.157",                        // EC2 backend origin (IMPORTANT)
-      "http://myfrontendd.s3-website.ap-south-1.amazonaws.com"
+      "http://myfrontendd.s3-website.ap-south-1.amazonaws.com",
+      "https://imprecatory-grady-biophysically.ngrok-free.dev"
     ],
     methods: ["GET", "POST", "PATCH" ,"PUT", "DELETE", "OPTIONS"],
     allowedHeaders: ["Content-Type", "Authorization"],
